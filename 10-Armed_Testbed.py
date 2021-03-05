@@ -223,7 +223,7 @@ class Environment():
 
             # Tracks Progress
             if (i%100) == 0:
-                print("Completed Iterations: ", i)
+                print(f"Iteration {i} Completed")
 
             # Reset agents
             for agent in agents:
@@ -260,33 +260,31 @@ class Environment():
 
 
 if __name__ == "__main__":
-    # Time tracking
 
     agents = [Agent(10, 0), Agent(10, 0.1), Agent(10, 0.01)]
     env = Environment(1000, 2000)
 
-    print("Running -->")
+    print("\nRunning -->")
     score, opt = env.play(agents)
 
     print("\nDrawing --> ")
 
     # Graphing Score Averages
     plt.plot(score[: , 0], "g")
-    plt.plot(score[: , 2], "r")
     plt.plot(score[: , 1], "k")
-    plt.yticks(np.arange(0, 1.6, step=0.5))
-    plt.ylabel('Average Reward')
-    plt.xlabel('Steps')
-    plt.legend(agents, loc=4)
+    plt.plot(score[: , 2], "r")
+    plt.yticks(np.arange(0, 1.6, step = 0.5))
+    plt.ylabel("Average Reward")
+    plt.xlabel("Steps")
+    plt.legend(agents, loc = 4, frameon = False)
     plt.show()
-
 
     # Graphing Optimum Averages
     plt.plot(opt[: , 0], "g")
-    plt.plot(opt[: , 2], "r")
     plt.plot(opt[: , 1], "k")
+    plt.plot(opt[: , 2], "r")
     plt.ylim(0, 100)
-    plt.ylabel('% Optimal Action')
-    plt.xlabel('Steps')
-    plt.legend(agents, loc=4)
+    plt.ylabel("% Optimal Action")
+    plt.xlabel("Steps")
+    plt.legend(agents, loc = 4, frameon = False)
     plt.show()
