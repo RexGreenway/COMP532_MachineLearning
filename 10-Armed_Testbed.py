@@ -13,7 +13,6 @@ Nicholas Bryan,
 
 import numpy as np
 import matplotlib.pyplot as plt
-import time
 
 
 class Agent():
@@ -269,8 +268,6 @@ if __name__ == "__main__":
 
     print("Running -->")
     score, opt = env.play(agents)
-
-    print("\nExecution time: %s seconds" % (time.time() - start_time))
 
     print("\nDrawing --> ")
 
