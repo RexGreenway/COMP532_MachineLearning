@@ -261,7 +261,6 @@ class Environment():
 
 if __name__ == "__main__":
     # Time tracking
-    start_time = time.time()
 
     agents = [Agent(10, 0), Agent(10, 0.1), Agent(10, 0.01)]
     env = Environment(1000, 2000)
