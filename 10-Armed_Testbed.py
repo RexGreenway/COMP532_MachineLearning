@@ -55,7 +55,6 @@ class Agent():
         # Variables used to adapt action value estimates.
         self.previousAct = None
         self.numActs = np.zeros(self.arms)
-        self.sumActs = np.zeros(self.arms)
 
         # Stored Action Value Estimates
         self.actVals = np.zeros(self.arms)
@@ -87,9 +86,7 @@ class Agent():
         
         if eNumSelector < self.eNum:
             # picks random arm from all arms
-            # action = randGenerator.choice(self.arms)
-
-            action = np.random.choice(self.arms)
+            action = self.randGen.choice(self.arms)
 
         # Greedy Choice
         else: 
@@ -98,8 +95,7 @@ class Agent():
 
             # When there are multiple greedy actions, choose one at random.
             if len(maxActs) > 1:
-                # action = randGenerator.choice(maxActs)
-                action = np.random.choice(maxActs)
+                action = self.randGen.choice(maxActs)
 
         # Encode the previous action
         self.previousAct = action
@@ -115,17 +111,14 @@ class Agent():
         reward : float
             Number recieved from the environment after performing a particular action.
         """
+        # Get previous action
+        a = self.previousAct
+
         # Increment action counter
-        self.numActs[self.previousAct] += 1
+        self.numActs[a] += 1
 
-        # Add reward for the previous action.
-        self.sumActs[self.previousAct] += reward
-
-        # New actVal estimate
-        qEstimate = self.sumActs[self.previousAct]/self.numActs[self.previousAct]
-
-        # Set new action value
-        self.actVals[self.previousAct] = qEstimate
+        # Update Rule FROM BOOK; Incremental action value estimates from previous using error estimate and step size.
+        self.actVals[a] += (reward - self.actVals[a])/self.numActs[a]
 
     def reset(self):
         """
@@ -133,7 +126,6 @@ class Agent():
         """
         self.previousAct = None
         self.numActs[:] = 0
-        self.sumActs[:] = 0
         self.actVals[:] = 0
 
 
@@ -223,7 +215,7 @@ class Environment():
 
             # Tracks Progress
             if (i%100) == 0:
-                print(f"Iteration {i} Completed")
+                print(f"Iterations Completed: {i}")
 
             # Reset agents
             for agent in agents:
