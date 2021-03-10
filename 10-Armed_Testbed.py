@@ -7,8 +7,8 @@ Introduction' by Richard S. Sutton and Andrew G. Barto (Second Edition), Figure 
 Authors
 -------
 Thomas Rex Greenway, 201198319
-Kit Bower-Morris,
-Nicholas Bryan, 
+Kit Bower-Morris, 201532917
+Nicholas Bryan, 201531951
 """
 
 import numpy as np
