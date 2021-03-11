@@ -282,14 +282,6 @@ class Environment():
             # Complete given number of episodes for each run
             for i in range(self.episodes):
 
-                # Tracker
-                # if (i%50) == 0:
-                #     print(f"Episodes Completed: {i}")
-
-                # if (i%10) == 0:
-                #     # for k in range(10)
-                #     rewardSum[i : i + 10] = rewardSum/10
-
                 # Initilialise starting state
                 self.state = self.S
                 self.end = False
