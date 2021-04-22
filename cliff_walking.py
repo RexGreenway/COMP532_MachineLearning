@@ -51,6 +51,12 @@ class Agent():
         # Numpy Random Generator
         self.randGen = np.random.default_rng()
 
+    def __str__(self):
+        """
+        Returns the string representation of the agent specifying its distinguishing eNum.
+        """
+        return f"\u03B5 = {self.eNum}"
+
     def action(self, state):
         """
         The policy, or action selector, that returns the desired action when in a given state.
@@ -373,6 +379,9 @@ if __name__ == "__main__":
     # PLOT
     plt.plot(movingAvg(rewardSarsa))
     plt.plot(movingAvg(rewardQLearn))
+    plt.title(agent)
+    plt.ylabel("Sum of Rewards During Episodes")
+    plt.xlabel("Episodes")
     plt.ylim(-100, 0)
     plt.legend(["SARSA", "Q-LEARNING"], loc = 4, frameon = False)
     plt.show()
